@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1f4e78">
+  <title>Vestiario Aziendale</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <h1>Vestiario</h1>
+    <button id="btnSettings" class="icon-btn" aria-label="Impostazioni">⚙</button>
+  </header>
+
+  <main>
+    <!-- Operazione -->
+    <nav class="modes" role="tablist">
+      <button data-mode="REGISTRAZIONE">Registra</button>
+      <button data-mode="INVIO LAVANDERIA" class="active">Invio</button>
+      <button data-mode="RIENTRO / VERIFICA">Rientro</button>
+    </nav>
+    <p id="modeHint" class="hint"></p>
+
+    <!-- CID -->
+    <section id="loginCard" class="card">
+      <label for="cidInput">Il tuo CID</label>
+      <div class="row">
+        <input id="cidInput" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="es. A12345">
+        <button id="btnLogin" class="primary">Inizia</button>
+      </div>
+    </section>
+
+    <section id="sessionCard" class="card hidden">
+      <div class="row between">
+        <div>
+          <div class="muted small">Utente</div>
+          <div id="cidLabel" class="cid"></div>
+        </div>
+        <button id="btnEnd" class="secondary">Fine</button>
+      </div>
+
+      <div id="reader"></div>
+      <div class="row">
+        <button id="btnCamera" class="primary wide">📷 Avvia fotocamera</button>
+      </div>
+      <div class="row">
+        <input id="codeInput" autocomplete="off" autocapitalize="characters" spellcheck="false"
+               placeholder="Lettore USB/bluetooth o digita">
+        <button id="btnCode" class="secondary">OK</button>
+      </div>
+    </section>
+
+    <div id="banner" class="banner idle">Inserisci il CID per iniziare</div>
+
+    <section id="listCard" class="card hidden">
+      <div class="row between">
+        <h2>I tuoi capi</h2>
+        <span id="counter" class="counter"></span>
+      </div>
+      <ul id="capiList" class="list"></ul>
+    </section>
+
+    <section id="logCard" class="card hidden">
+      <h2>Letture di questa sessione</h2>
+      <ul id="logList" class="list log"></ul>
+    </section>
+  </main>
+
+  <!-- Impostazioni -->
+  <dialog id="settings">
+    <form method="dialog" class="settings">
+      <h2>Impostazioni</h2>
+      <label for="apiUrl">URL App Script (…/exec)</label>
+      <input id="apiUrl" type="url" placeholder="https://script.google.com/macros/s/…/exec">
+      <label for="apiKey">Chiave di accesso</label>
+      <input id="apiKey" type="password" autocomplete="off">
+      <p class="muted small">Le impostazioni restano salvate solo su questo dispositivo.</p>
+      <div class="row">
+        <button id="btnCopyLink" type="button" class="secondary">Copia link di configurazione</button>
+      </div>
+      <div class="row end">
+        <button value="cancel" class="secondary">Annulla</button>
+        <button id="btnSave" value="save" class="primary">Salva</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>

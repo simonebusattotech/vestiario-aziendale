@@ -1,0 +1,11 @@
+{
+  "name": "Vestiario Aziendale",
+  "short_name": "Vestiario",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f1f3f6",
+  "theme_color": "#1f4e78",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
